@@ -1,18 +1,22 @@
 package routes
 
 import (
+	"fiber/src/controllers"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html"
-	// "github.com/gofibe"
 )
 
 func Router() *fiber.App {
-	// App 생성, 템플릿 설정
+	// Create a new engine
+	engine := html.New("./views", ".html")
+
+	// Pass the engine to the Views
 	app := fiber.New(fiber.Config{
-		Views: html.New("./views", "html"),
+		Views: engine,
 	})
 
 	// Route 설정
-	// app.Get("/", controllers.Index)
+	app.Get("/", controllers.Index)
 	return app
 }

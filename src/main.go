@@ -1,17 +1,13 @@
 package main
 
 import (
+	"fiber/src/database"
+	"fiber/src/routes"
 	"log"
-
-	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	app := fiber.New()
-
-	app.Get("/ping", func(c *fiber.Ctx) error {
-		return c.SendString("Pingpong by fiber\n")
-	})
-
+	app := routes.Router()
+	database.Init()
 	log.Fatal(app.Listen(":3000"))
 }
